@@ -10,8 +10,9 @@
 #define PI 3.1415926535
 
 char gameLoop=1;
-int initPlayersSpeed=7;
-int initBallSpeed=5;
+char bot=1;
+int initPlayersSpeed=6;
+int initBallSpeed=6;
 
 void drawRect(int x, int y, int w, int h, ALLEGRO_COLOR color){
     for (int i=0; i<h; i++){
@@ -85,6 +86,21 @@ int main(){
                 }
             }
         } while(!al_is_event_queue_empty(ev_queue));
+
+        if (bot){
+            if (ball.x > displayWidth/2+20 && ball.x < playerTwo.x){
+                playerTwo.direction=ball.y+ball.size[1]/2 < playerTwo.y+playerTwo.size[1]/2 ? -1 : 1;
+                // if (ball.y-ball.size[1]/2 > playerTwo.y+playerTwo.size[1]){
+                //     playerTwo.direction=1;
+                // } else if(ball.y-ball.size[1]/2 < playerTwo.y+playerTwo.size[1]){
+                //     playerTwo.direction=-1;
+                // } else{
+                //     playerTwo.direction=0;
+                // }
+            } else{
+                playerTwo.direction=0;
+            }
+        }
 
         // HANDLE MOVIMENTS
         playerOne.y+=playerOne.direction*playerOne.speed;
