@@ -1,0 +1,1 @@
+gcc main.c -o pong -lallegro -lallegro_font -lallegro_ttf -lm
